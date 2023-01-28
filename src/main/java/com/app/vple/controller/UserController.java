@@ -2,10 +2,12 @@ package com.app.vple.controller;
 
 import com.app.vple.config.jwt.JwtProperties;
 import com.app.vple.domain.User;
+import com.app.vple.domain.dto.UserDetailDto;
 import com.app.vple.domain.oauth.OauthToken;
 import com.app.vple.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +38,13 @@ public class UserController {
     }
 
     @GetMapping("/auth/me")
-    public ResponseEntity<Object> getCurrentUser(HttpServletRequest request) {
-
-        User user = userService.getUser(request);
-
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<?> getCurrentUser(HttpServletRequest request) {
+        try {
+            User user = userService.getUser(request);
+            UserDetailDto userDetail = userService.getUserDetail(user);
+            return new ResponseEntity<>(userDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

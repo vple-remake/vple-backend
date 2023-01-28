@@ -2,6 +2,7 @@ package com.app.vple.service;
 
 import com.app.vple.config.jwt.JwtProperties;
 import com.app.vple.domain.User;
+import com.app.vple.domain.dto.UserDetailDto;
 import com.app.vple.domain.enums.Age;
 import com.app.vple.domain.enums.Gender;
 import com.app.vple.domain.enums.Role;
@@ -157,6 +158,10 @@ public class UserService {
         );
 
         return user;
+    }
+
+    public UserDetailDto getUserDetail(User user) {
+        return new UserDetailDto(user);
     }
 
 }
