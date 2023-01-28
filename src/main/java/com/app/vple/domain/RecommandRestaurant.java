@@ -29,10 +29,8 @@ public class RecommandRestaurant {
 
     private Float rating;
 
-    @Column(nullable = false)
     private String latitude;
 
-    @Column(nullable = false)
     private String longitude;
 
     private String address;
@@ -47,8 +45,4 @@ public class RecommandRestaurant {
 
     @OneToMany(mappedBy = "recommandRestaurant")
     private List<Menu> menus;
-
-    @Column(name = "review_count")
-    @Formula(value = "(select count(*) from restaurant_reviews where restaurant_reviews.restaurant_id = recommand_restaurant_id)")
-    private Integer reviewCount;
 }

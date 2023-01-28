@@ -21,7 +21,6 @@ public class Menu {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private RecommandRestaurant recommandRestaurant;
 
-    @Column(nullable = false)
     private String name;
 
     private String image;

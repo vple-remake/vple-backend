@@ -5,12 +5,13 @@ import com.app.vple.domain.enums.Age;
 import com.app.vple.domain.enums.Gender;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 public class UserDetailDto {
+
+    private Long userCode;
 
     private Long id;
 
@@ -24,17 +25,12 @@ public class UserDetailDto {
 
     private String image;
 
-    private Integer followers;
-
-    private Integer followings;
-
     private Integer planCount;
 
     private List<UserWrittenPlanListDto> myPlans;
 
-    private String introduction;
-
     public UserDetailDto(User user) {
+        this.userCode = user.getUserCode();
         this.id = user.getId();
         this.email = user.getEmail();
         this.nickname = user.getNickname();
