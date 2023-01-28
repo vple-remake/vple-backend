@@ -1,8 +1,10 @@
 package com.app.vple.controller;
 
 import com.app.vple.domain.Plan;
+import com.app.vple.domain.User;
 import com.app.vple.domain.dto.*;
 import com.app.vple.service.PlanService;
+import com.app.vple.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -21,20 +23,20 @@ import java.util.List;
 @RequestMapping("/auth/plan")
 public class PlanController {
 
-    private final HttpSession httpSession;
+    private final UserService userService;
 
     private final PlanService planService;
 
-//    @GetMapping
-//    public ResponseEntity<?> planList() {
-//        try {
-//            SessionLoginUser loginUser = (SessionLoginUser) httpSession.getAttribute("user");
-//            List<MyPlansDto> plans = planService.findPlan(loginUser.getEmail());
-//            return new ResponseEntity<>(plans, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @GetMapping
+    public ResponseEntity<?> planList(HttpServletRequest request) {
+        try {
+            User loginUser = userService.getUser(request);
+            List<MyPlansDto> plans = planService.findPlan(loginUser.getEmail());
+            return new ResponseEntity<>(plans, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @GetMapping("/like")
     public ResponseEntity<?> planLikeList(
@@ -58,17 +60,17 @@ public class PlanController {
         }
     }
 
-//    @PostMapping
-//    public ResponseEntity<?> planAdd(@Validated @RequestBody PlanCreateDto planCreateDto) {
-//        try {
-//            SessionLoginUser loginUser = (SessionLoginUser) httpSession.getAttribute("user");
-//            String email = loginUser.getEmail();
-//            Plan plan = planService.addPlan(planCreateDto, email);
-//            return new ResponseEntity<>(plan, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PostMapping
+    public ResponseEntity<?> planAdd(HttpServletRequest request, @Validated @RequestBody PlanCreateDto planCreateDto) {
+        try {
+            User loginUser = userService.getUser(request);
+            String email = loginUser.getEmail();
+            String title = planService.addPlan(planCreateDto, email);
+            return new ResponseEntity<>(title + "를 추가하였습니다.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> planRemove(@PathVariable Long id) {
@@ -91,15 +93,15 @@ public class PlanController {
         }
     }
 
-//    @PatchMapping("/like/{id}")
-//    public ResponseEntity<?> planLikeAdd(@PathVariable Long id) {
-//        try {
-//            SessionLoginUser loginUser = (SessionLoginUser) httpSession.getAttribute("user");
-//            String result = planService.changePlanLike(id, loginUser.getEmail());
-//            return new ResponseEntity<>(result, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PatchMapping("/like/{id}")
+    public ResponseEntity<?> planLikeAdd(HttpServletRequest request, @PathVariable Long id) {
+        try {
+            User loginUser = userService.getUser(request);
+            String result = planService.changePlanLike(id, loginUser.getEmail());
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

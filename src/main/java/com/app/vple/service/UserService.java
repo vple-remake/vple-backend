@@ -50,10 +50,10 @@ public class UserService {
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", clientId);
+        params.add("client_id", "9bace5ab316d4073d7412f542dd4f2c8");
         params.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
         params.add("code", code);
-        params.add("client_secret", clientSecret);
+        params.add("client_secret", "206PsNZkuvbGJURP9ODTiCECD5qCml3s");
 
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
                 new HttpEntity<>(params, headers);
