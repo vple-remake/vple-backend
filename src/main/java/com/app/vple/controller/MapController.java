@@ -19,23 +19,23 @@ public class MapController {
 
     private final RecommandRestaurantService restaurantService;
 
-//    @GetMapping("/restaurant")
-//    public ResponseEntity<?> MapRestaurantList() {
-//        try {
-//            List<MapRestaurantListDto> restaurants = restaurantService.findMapRestaurant();
-//            return new ResponseEntity<>(restaurants, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @GetMapping("/restaurant")
+    public ResponseEntity<?> MapRestaurantList() {
+        try {
+            List<MapRestaurantListDto> restaurants = restaurantService.findMapRestaurant();
+            return new ResponseEntity<>(restaurants, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
-//    @GetMapping("/search")
-//    public ResponseEntity<?> MapSearch(@RequestParam(name = "keyword") String keyword) {
-//        try {
-//            List<MapRestaurantListDto> restaurants = restaurantService.searchMapRestaurnat(keyword);
-//            return new ResponseEntity<>(restaurants, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @GetMapping("/search")
+    public ResponseEntity<?> MapSearch(@RequestParam(name = "keyword") String keyword) {
+        try {
+            List<MapRestaurantListDto> restaurants = restaurantService.searchMapRestaurnat(keyword);
+            return new ResponseEntity<>(restaurants, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
