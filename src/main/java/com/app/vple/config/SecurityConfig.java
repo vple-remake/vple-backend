@@ -1,6 +1,7 @@
 package com.app.vple.config;
 
 import com.app.vple.config.jwt.CustomAuthenticationEntryPoint;
+import com.app.vple.config.jwt.JwtProperties;
 import com.app.vple.config.jwt.JwtRequestFilter;
 import com.app.vple.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -59,6 +60,8 @@ public class SecurityConfig {
         corsConfiguration.addAllowedMethod("*");
 
         corsConfiguration.setAllowCredentials(true);
+
+        corsConfiguration.addExposedHeader(JwtProperties.HEADER_STRING);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
