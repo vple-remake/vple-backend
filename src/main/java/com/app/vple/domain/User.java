@@ -37,12 +37,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column
     private Gender gender;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column
     private Age age;
 
     @Column(nullable = false, name = "my_role", updatable = false)

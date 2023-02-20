@@ -124,8 +124,6 @@ public class UserService {
                     .image(profile.getKakao_account().getProfile().getProfile_image_url())
                     .nickname(profile.getKakao_account().getProfile().getNickname())
                     .email(profile.getKakao_account().getEmail())
-                    .gender(Gender.toGender(profile.getKakao_account().getGender()))
-                    .age(Age.toAge(profile.getKakao_account().getAge_range()))
                     .myRole(Role.MEMBER).build();
 
             userRepository.save(user);
