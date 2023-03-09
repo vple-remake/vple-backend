@@ -20,7 +20,7 @@ public class MapController {
     private final RecommandRestaurantService restaurantService;
 
     @GetMapping("/restaurant")
-    public ResponseEntity<?> MapRestaurantList() {
+    public ResponseEntity<?> mapRestaurantList() {
         try {
             List<MapRestaurantListDto> restaurants = restaurantService.findMapRestaurant();
             return new ResponseEntity<>(restaurants, HttpStatus.OK);
@@ -30,7 +30,7 @@ public class MapController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> MapSearch(@RequestParam(name = "keyword") String keyword) {
+    public ResponseEntity<?> mapSearch(@RequestParam(name = "keyword") String keyword) {
         try {
             List<MapRestaurantListDto> restaurants = restaurantService.searchMapRestaurnat(keyword);
             return new ResponseEntity<>(restaurants, HttpStatus.OK);
