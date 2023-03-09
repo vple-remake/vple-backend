@@ -58,12 +58,12 @@ public class RecommandRestaurantService {
     }
 
     public Page<RecommandRestaurantListDto> searchRestaurant(String district, String city, Pageable pageable) {
-        if (city.equals("전체")) {
-            Page<RecommandRestaurant> recommandRestaurants = recommandRestaurantRepository.findByDistrict(district, pageable);
+        if (district.equals("전체") && city.equals("전체")) {
+            Page<RecommandRestaurant> recommandRestaurants = recommandRestaurantRepository.findAll(pageable);
             return recommandRestaurants.map(RecommandRestaurantListDto::new);
         }
-        else if (district.equals("전체") && city.equals("전체")) {
-            Page<RecommandRestaurant> recommandRestaurants = recommandRestaurantRepository.findAll(pageable);
+        else if (city.equals("전체")) {
+            Page<RecommandRestaurant> recommandRestaurants = recommandRestaurantRepository.findByDistrict(district, pageable);
             return recommandRestaurants.map(RecommandRestaurantListDto::new);
         }
 
