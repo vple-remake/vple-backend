@@ -11,10 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,6 +40,18 @@ public class RecommandRestaurantController {
         try {
             RecommandRestaurantDetailDto recommandRestaurant = recommandRestaurantService.findRecommandRestaurantDetails(id);
             return new ResponseEntity<>(recommandRestaurant, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @ApiOperation(value = "추천 식당 검색")
+    @GetMapping("/search")
+    public ResponseEntity<?> recommandRestaurantSearch(@RequestParam(name = "district") String district, @RequestParam(name = "city") String city,
+                                                       @PageableDefault(size = PAGE_SIZE, sort = "rating", direction = Sort.Direction.DESC)Pageable pageable) {
+        try {
+            Page<RecommandRestaurantListDto> recommandRestaurants = recommandRestaurantService.searchRestaurant(district, city, pageable);
+            return new ResponseEntity<>(recommandRestaurants, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

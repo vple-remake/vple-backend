@@ -17,4 +17,8 @@ public interface RecommandRestaurantRepository extends JpaRepository<RecommandRe
     List<RecommandRestaurant> findByNameContaining(String keyword);
 
     List<RecommandRestaurant> findByAddressContaining(String keyword);
+
+    Page<RecommandRestaurant> findByDistrict(String district, Pageable pageable);
+
+    Page<RecommandRestaurant> findByDistrictAndCity(String district, String city, Pageable pageable);
 }
