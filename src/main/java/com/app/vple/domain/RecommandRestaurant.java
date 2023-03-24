@@ -1,5 +1,7 @@
 package com.app.vple.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.hibernate.annotations.Formula;
 
@@ -43,6 +45,14 @@ public class RecommandRestaurant {
 
     private String image;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "recommandRestaurant")
+    private Evaluation evaluation;
+
     @OneToMany(mappedBy = "recommandRestaurant")
     private List<Menu> menus;
+
+    @OneToMany(mappedBy = "recommandRestaurant")
+    private List<RestaurantReview> restaurantReviews;
+
 }
