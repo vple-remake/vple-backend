@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Data
 public class PlanCreateDto {
 
-    @NotBlank(message = "제목이 필요합니다.")
     private String title;
 
     @NotNull(message = "지역 대분류가 필요합니다.")

@@ -30,7 +30,6 @@ public class Plan {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
