@@ -45,7 +45,6 @@ public class RecommandRestaurant {
 
     private String image;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "recommandRestaurant")
     private Evaluation evaluation;
 
