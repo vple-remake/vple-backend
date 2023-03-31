@@ -59,7 +59,7 @@ public class PlanService {
             User user = userRepository.findByEmail(email).orElseThrow(
                     () -> new NoSuchElementException("해당 사용자가 존재하지 않습니다."));
             Plan plan = planRepository.save(planCreateDto.toEntity(user));
-            return plan.getTitle();
+            return Long.toString(plan.getId());
         } catch (Exception e) {
             throw new IllegalStateException("형식이 잘못되었습니다.");
         }

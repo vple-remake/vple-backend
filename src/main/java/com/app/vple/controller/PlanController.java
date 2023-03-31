@@ -66,7 +66,7 @@ public class PlanController {
             User loginUser = userService.getUser(request);
             String email = loginUser.getEmail();
             String title = planService.addPlan(planCreateDto, email);
-            return new ResponseEntity<>(title + " 추가완료.", HttpStatus.OK);
+            return new ResponseEntity<>("id:" + title + " 추가완료.", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
