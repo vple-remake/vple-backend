@@ -29,16 +29,18 @@ public class PlanTravelService {
         return new PlanTravelDetailDto(planTravel);
     }
 
-    public String addPlanTravel(PlanTravelAddDto addPlanTravel) {
+    public Long addPlanTravel(PlanTravelAddDto addPlanTravel) {
         Long planId = addPlanTravel.getPlanId();
 
         Plan plan = planRepository.findById(planId).orElseThrow(
                 () -> new NoSuchElementException("해당 플랜이 없습니다.")
         );
 
-        planTravelRepository.save(addPlanTravel.toEntity(plan));
+        PlanTravel planTravel = addPlanTravel.toEntity(plan);
 
-        return addPlanTravel.getName();
+        planTravelRepository.save(planTravel);
+
+        return planTravel.getId();
     }
 
     public String removePlanTravel(Long id) {
