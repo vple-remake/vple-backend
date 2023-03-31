@@ -54,12 +54,12 @@ public class PlanService {
         return new PlanDetailDto(plan);
     }
 
-    public String addPlan(PlanCreateDto planCreateDto, String email) {
+    public Long addPlan(PlanCreateDto planCreateDto, String email) {
         try {
             User user = userRepository.findByEmail(email).orElseThrow(
                     () -> new NoSuchElementException("해당 사용자가 존재하지 않습니다."));
             Plan plan = planRepository.save(planCreateDto.toEntity(user));
-            return plan.getTitle();
+            return plan.getId();
         } catch (Exception e) {
             throw new IllegalStateException("형식이 잘못되었습니다.");
         }
