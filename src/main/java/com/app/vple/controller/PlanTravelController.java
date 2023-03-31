@@ -29,8 +29,8 @@ public class PlanTravelController {
     @PostMapping
     public ResponseEntity<?> planTravelAdd(@Validated @RequestBody PlanTravelAddDto planTravelAddDto) {
         try {
-            String planTravel = planTravelService.addPlanTravel(planTravelAddDto);
-            return new ResponseEntity<>(planTravel + " 등록완료", HttpStatus.OK);
+            Long planTravelId = planTravelService.addPlanTravel(planTravelAddDto);
+            return new ResponseEntity<>(planTravelId + " 등록완료", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
