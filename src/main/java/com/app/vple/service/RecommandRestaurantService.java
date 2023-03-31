@@ -30,7 +30,7 @@ public class RecommandRestaurantService {
 
     public RecommandRestaurantDetailDto findRecommandRestaurantDetails(Long id) {
         RecommandRestaurant recommandRestaurant = recommandRestaurantRepository.findById(id).orElseThrow(
-                () -> new NoSuchElementException("The restaurant does not exist.")
+                () -> new NoSuchElementException("해당 식당이 존재하지 않습니다.")
         );
 
         return new RecommandRestaurantDetailDto(recommandRestaurant);

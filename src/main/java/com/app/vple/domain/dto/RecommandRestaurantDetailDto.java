@@ -58,6 +58,9 @@ public class RecommandRestaurantDetailDto {
 
     public HashMap<String, Integer> statisticsOfEvaluation(Evaluation evaluation) {
         HashMap<String,Integer> statisticsMap = new HashMap<String, Integer>();
+        if (evaluation == null) {
+            return statisticsMap;
+        }
         statisticsMap.put("delicious", evaluation.getDelicious());
         statisticsMap.put("fresh", evaluation.getFresh());
         statisticsMap.put("kind", evaluation.getKind());

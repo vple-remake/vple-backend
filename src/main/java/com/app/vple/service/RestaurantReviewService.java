@@ -108,9 +108,9 @@ public class RestaurantReviewService {
                 () -> new NoSuchElementException("해당 식당리뷰가 존재하지 않습니다.")
         );
 
-        Long recommandResraurantId = restaurantReview.getRecommandRestaurant().getId();
+        Long recommandRestaurantId = restaurantReview.getRecommandRestaurant().getId();
 
-        RecommandRestaurant recommandRestaurant = recommandRestaurantRepository.findById(recommandResraurantId).orElseThrow(
+        RecommandRestaurant recommandRestaurant = recommandRestaurantRepository.findById(recommandRestaurantId).orElseThrow(
                 () -> new NoSuchElementException("해당 식당이 존재하지 않습니다.")
         );
 
