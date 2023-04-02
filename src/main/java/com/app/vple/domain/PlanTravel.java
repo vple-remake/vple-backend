@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -42,4 +43,7 @@ public class PlanTravel {
 
     @Column(nullable = false)
     private int day;
+
+    @Column(nullable = false)
+    private LocalTime startTime;
 }

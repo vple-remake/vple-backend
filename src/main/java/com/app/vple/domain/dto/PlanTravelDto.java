@@ -3,6 +3,8 @@ package com.app.vple.domain.dto;
 import com.app.vple.domain.PlanTravel;
 import lombok.Data;
 
+import java.time.LocalTime;
+
 @Data
 public class PlanTravelDto {
 
@@ -14,10 +16,13 @@ public class PlanTravelDto {
 
     private int day;
 
+    private LocalTime startTime;
+
     public PlanTravelDto(PlanTravel entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.address = entity.getAddress();
         this.day = entity.getDay();
+        this.startTime = entity.getStartTime();
     }
 }
