@@ -9,7 +9,7 @@ public class RestaurantReviewDto {
 
     private Long id;
 
-    private User user;
+    private String nickname;
 
     private String title;
 
@@ -19,10 +19,10 @@ public class RestaurantReviewDto {
 
 
     public RestaurantReviewDto(RestaurantReview entity) {
-        id = entity.getId();
-        user = entity.getUser();
-        title = entity.getTitle();
-        text = entity.getText();
-        image = entity.getImage();
+        this.id = entity.getId();
+        this.nickname = entity.getUser().getNickname();
+        this.title = entity.getTitle();
+        this.text = entity.getText();
+        this.image = entity.getImage();
     }
 }

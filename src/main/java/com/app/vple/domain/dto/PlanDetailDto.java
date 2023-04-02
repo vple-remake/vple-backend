@@ -1,9 +1,11 @@
 package com.app.vple.domain.dto;
 
 import com.app.vple.domain.Plan;
+import com.app.vple.domain.PlanTravel;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +36,8 @@ public class PlanDetailDto {
         this.city = entity.getCity();
         this.planTravels = entity.getPlanTravels()
                 .stream()
+                .sorted(Comparator.comparing(PlanTravel::getDay)
+                .thenComparing(PlanTravel::getStartTime))
                 .map(PlanTravelDto::new)
                 .collect(Collectors.toList());
         this.isOpened = entity.isOpened();
