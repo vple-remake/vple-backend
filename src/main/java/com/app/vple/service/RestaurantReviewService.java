@@ -65,7 +65,11 @@ public class RestaurantReviewService {
     }
 
     public Page<RestaurantReviewListDto> findRestaurantReviewList(Long id, Pageable pageable) {
-        Page<RestaurantReview> restaurantReviews = restaurantReviewRepository.findAll(pageable);
+
+        RecommandRestaurant recommandRestaurant = recommandRestaurantRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("해당 식당이 존재하지 않습니다.")
+        );
+        Page<RestaurantReview> restaurantReviews = restaurantReviewRepository.findByRecommandRestaurant(recommandRestaurant, pageable);
 
         return restaurantReviews.map(RestaurantReviewListDto::new);
     }
