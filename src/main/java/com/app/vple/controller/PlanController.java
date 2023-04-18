@@ -20,14 +20,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth/plan")
 public class PlanController {
 
     private final UserService userService;
 
     private final PlanService planService;
 
-    @GetMapping
+    @GetMapping("/auth/plan")
     public ResponseEntity<?> planList(HttpServletRequest request) {
         try {
             User loginUser = userService.getUser(request);
@@ -38,7 +37,7 @@ public class PlanController {
         }
     }
 
-    @GetMapping("/like")
+    @GetMapping("/api/plan/like")
     public ResponseEntity<?> planLikeList(
             @PageableDefault(size = 20, sort="likesCount", direction = Sort.Direction.DESC) Pageable pageable) {
         try {
@@ -49,7 +48,7 @@ public class PlanController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/auth/plan/{id}")
     public ResponseEntity<?> planDetails(@PathVariable Long id) {
         try {
             PlanDetailDto plan = planService.findPlanDetails(id);
@@ -59,7 +58,7 @@ public class PlanController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/auth/plan")
     public ResponseEntity<?> planAdd(HttpServletRequest request, @Validated @RequestBody PlanCreateDto planCreateDto) {
         try {
             User loginUser = userService.getUser(request);
@@ -71,7 +70,7 @@ public class PlanController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/auth/plan/{id}")
     public ResponseEntity<?> planRemove(@PathVariable Long id) {
         try {
             String title = planService.removePlan(id);
@@ -81,7 +80,7 @@ public class PlanController {
         }
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/auth/plan/{id}")
     public ResponseEntity<?> planModify(@PathVariable Long id,
                                         @Validated @RequestBody PlanUpdateDto planUpdateDto) {
         try {
@@ -92,7 +91,7 @@ public class PlanController {
         }
     }
 
-    @PatchMapping("/like/{id}")
+    @PatchMapping("/auth/plan/like/{id}")
     public ResponseEntity<?> planLikeAdd(HttpServletRequest request, @PathVariable Long id) {
         try {
             User loginUser = userService.getUser(request);

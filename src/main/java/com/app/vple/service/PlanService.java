@@ -41,7 +41,7 @@ public class PlanService {
     }
 
     public Page<PlanListDto> findLikeList(Pageable pageable) {
-        Page<Plan> plans = planRepository.findAll(pageable);
+        Page<Plan> plans = planRepository.findPlanByIsOpenedTrue(pageable);
 
         return plans.map(PlanListDto::new);
     }
