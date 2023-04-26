@@ -30,6 +30,9 @@ public class PlanTravel {
     @Column(nullable = false)
     private String name;
 
+    @Column
+    private String address;
+
     @Column(nullable = false)
     private String longitude;
 
