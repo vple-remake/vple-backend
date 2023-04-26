@@ -12,8 +12,6 @@ public class PlanTravelDto {
 
     private String name;
 
-    private String address;
-
     private int day;
 
     private LocalTime startTime;
@@ -21,7 +19,6 @@ public class PlanTravelDto {
     public PlanTravelDto(PlanTravel entity) {
         this.id = entity.getId();
         this.name = entity.getName();
-        this.address = entity.getAddress();
         this.day = entity.getDay();
         this.startTime = entity.getStartTime();
     }
