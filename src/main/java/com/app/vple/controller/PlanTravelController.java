@@ -2,6 +2,7 @@ package com.app.vple.controller;
 
 import com.app.vple.domain.dto.PlanTravelAddDto;
 import com.app.vple.domain.dto.PlanTravelDetailDto;
+import com.app.vple.domain.dto.PlanTravelUpdateDto;
 import com.app.vple.service.PlanTravelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,17 @@ public class PlanTravelController {
         try {
             Long planTravelId = planTravelService.addPlanTravel(planTravelAddDto);
             return new ResponseEntity<>(planTravelId + " 등록완료", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> planTravelModify(@PathVariable Long id,
+                                              @Validated @RequestBody PlanTravelUpdateDto planTravelUpdateDto) {
+        try {
+            String planTravel = planTravelService.modifyPlanTravel(id, planTravelUpdateDto);
+            return new ResponseEntity<>(planTravel + " 수정완료", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

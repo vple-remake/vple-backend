@@ -16,16 +16,6 @@ public class PlanUpdateDto {
     @NotBlank(message = "제목이 필요합니다.")
     private String title;
 
-    @NotNull(message = "시작일이 필요합니다.")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate startDate;
-
-    @NotNull(message = "종료일이 필요합니다.")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate endDate;
-
     @JsonProperty("isOpened")
     private boolean isOpened;
 }
