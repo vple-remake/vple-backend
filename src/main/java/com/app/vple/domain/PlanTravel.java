@@ -1,5 +1,6 @@
 package com.app.vple.domain;
 
+import com.app.vple.domain.dto.PlanTravelUpdateDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,4 +47,8 @@ public class PlanTravel {
 
     @Column(nullable = false)
     private LocalTime startTime;
+
+    public void updatePlanTravel(PlanTravelUpdateDto planTravelUpdateDto) {
+        this.startTime = planTravelUpdateDto.getStartTime();
+    }
 }

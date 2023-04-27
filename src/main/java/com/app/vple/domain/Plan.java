@@ -63,8 +63,6 @@ public class Plan {
 
     public void updatePlan(PlanUpdateDto planUpdateDto) {
         this.title = planUpdateDto.getTitle();
-        this.startDate = planUpdateDto.getStartDate();
-        this.endDate = planUpdateDto.getEndDate();
         this.isOpened = planUpdateDto.isOpened();
     }
 }

@@ -4,6 +4,7 @@ import com.app.vple.domain.Plan;
 import com.app.vple.domain.PlanTravel;
 import com.app.vple.domain.dto.PlanTravelAddDto;
 import com.app.vple.domain.dto.PlanTravelDetailDto;
+import com.app.vple.domain.dto.PlanTravelUpdateDto;
 import com.app.vple.repository.PlanRepository;
 import com.app.vple.repository.PlanTravelRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,17 @@ public class PlanTravelService {
         planTravelRepository.save(planTravel);
 
         return planTravel.getId();
+    }
+
+    public String modifyPlanTravel(Long id, PlanTravelUpdateDto planTravelUpdateDto) {
+        PlanTravel planTravel = planTravelRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("해당 여행지가 존재하지 않습니다.")
+        );
+
+        planTravel.updatePlanTravel(planTravelUpdateDto);
+        planTravelRepository.save(planTravel);
+
+        return planTravel.getName();
     }
 
     public String removePlanTravel(Long id) {
