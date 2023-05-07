@@ -14,10 +14,13 @@ public class MapRestaurantListDto {
 
     private String longitude;
 
+    private String image;
+
     public MapRestaurantListDto(RecommandRestaurant entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.latitude = entity.getLatitude();
         this.longitude = entity.getLongitude();
+        this.image = entity.getImage();
     }
 }
