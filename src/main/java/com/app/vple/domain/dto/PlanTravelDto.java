@@ -16,10 +16,13 @@ public class PlanTravelDto {
 
     private LocalTime startTime;
 
+    private String Image;
+
     public PlanTravelDto(PlanTravel entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.day = entity.getDay();
         this.startTime = entity.getStartTime();
+        this.Image = entity.getImage();
     }
 }
