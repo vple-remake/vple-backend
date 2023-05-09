@@ -1,6 +1,8 @@
 package com.app.vple.domain;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -15,10 +17,12 @@ public class CheckDuplicatedPlanLike {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Plan plan;
 
     public CheckDuplicatedPlanLike(User user, Plan plan) {
