@@ -15,6 +15,6 @@ public class UserWrittenPlanListDto {
     public UserWrittenPlanListDto(Plan entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
-        this.image = "";
+        this.image = entity.getPlanTravels().get(0).getImage();
     }
 }
