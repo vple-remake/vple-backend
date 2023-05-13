@@ -20,6 +20,8 @@ public class PlanListDto {
 
     private LocalDate endDate;
 
+    private String image;
+
     public PlanListDto(Plan entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
@@ -27,5 +29,6 @@ public class PlanListDto {
         this.likeCount = entity.getLikesCount();
         this.startDate = entity.getStartDate();
         this.endDate = entity.getEndDate();
+        this.image = entity.getPlanTravels().get(0).getImage();
     }
 }
