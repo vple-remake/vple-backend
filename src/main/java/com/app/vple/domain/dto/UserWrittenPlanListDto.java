@@ -1,6 +1,7 @@
 package com.app.vple.domain.dto;
 
 import com.app.vple.domain.Plan;
+import com.app.vple.domain.PlanTravel;
 import lombok.Data;
 
 @Data
@@ -15,6 +16,9 @@ public class UserWrittenPlanListDto {
     public UserWrittenPlanListDto(Plan entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
-        this.image = entity.getPlanTravels().get(0).getImage();
+        this.image = entity.getPlanTravels().stream()
+                .findFirst() // 첫 번째 요소만 선택
+                .map(PlanTravel::getImage) // 이미지 필드를 매핑
+                .orElse(null); // 값이 없을 경우에는 null 반환
     }
 }
