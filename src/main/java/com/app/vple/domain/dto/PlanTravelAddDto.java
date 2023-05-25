@@ -32,7 +32,7 @@ public class PlanTravelAddDto {
 
     @NotNull(message = "해당 장소의 여행 시작 시간을 적어주세요.")
     @JsonDeserialize(using = LocalTimeDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss", timezone = "Asia/Seoul")
     private LocalTime startTime;
 
     public PlanTravel toEntity(Plan plan) {
