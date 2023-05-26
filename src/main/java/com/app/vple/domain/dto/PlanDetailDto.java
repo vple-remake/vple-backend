@@ -28,6 +28,8 @@ public class PlanDetailDto {
 
     private Integer likesCount;
 
+    private Integer totalDays;
+
     public PlanDetailDto(Plan entity) {
         this.title = entity.getTitle();
         this.startDate = entity.getStartDate();
@@ -42,5 +44,6 @@ public class PlanDetailDto {
                 .collect(Collectors.toList());
         this.isOpened = entity.isOpened();
         this.likesCount = entity.getLikesCount();
+        this.totalDays = entity.getEndDate().getDayOfMonth() - entity.getStartDate().getDayOfMonth() + 1;
     }
 }

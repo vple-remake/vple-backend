@@ -4,6 +4,8 @@ import com.app.vple.domain.PlanTravel;
 import lombok.Data;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Data
 public class PlanTravelDto {
@@ -14,7 +16,7 @@ public class PlanTravelDto {
 
     private int day;
 
-    private LocalTime startTime;
+    private String startTime;
 
     private String Image;
 
@@ -22,7 +24,7 @@ public class PlanTravelDto {
         this.id = entity.getId();
         this.name = entity.getName();
         this.day = entity.getDay();
-        this.startTime = entity.getStartTime();
+        this.startTime = entity.getStartTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
         this.Image = entity.getImage();
     }
 }
