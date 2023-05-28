@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class CartDetailDto {
 
+    private Long restaurantId;
+
     private String name;
 
     private String address;
@@ -17,6 +19,7 @@ public class CartDetailDto {
     private String image;
 
     public CartDetailDto(Cart entity) {
+        this.restaurantId = entity.getRestaurantId();
         this.name = entity.getName();
         this.address = entity.getAddress();
         this.longitude = entity.getLongitude();

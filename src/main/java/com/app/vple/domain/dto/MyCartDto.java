@@ -8,6 +8,8 @@ public class MyCartDto {
 
     private Long id;
 
+    private Long restaurantId;
+
     private String name;
 
     private String address;
@@ -16,6 +18,7 @@ public class MyCartDto {
 
     public MyCartDto(Cart entity) {
         this.id = entity.getId();
+        this.restaurantId = entity.getRestaurantId();
         this.name = entity.getName();
         this.address = entity.getAddress();
         this.image = entity.getImage();
