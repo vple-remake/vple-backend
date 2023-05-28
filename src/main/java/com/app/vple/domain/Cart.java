@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter
@@ -25,6 +26,9 @@ public class Cart {
     @JoinColumn(name = "user_code")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
+
+    @Column (nullable = false)
+    private Long restaurantId;
 
     @Column(nullable = false)
     private String name;

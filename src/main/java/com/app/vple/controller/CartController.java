@@ -50,7 +50,7 @@ public class CartController {
     public ResponseEntity<?> cartAdd(HttpServletRequest request, @Validated @RequestBody CartAddDto cartAddDto) {
         try {
             User loginUser = userService.getUser(request);
-            String name = cartService.addPlan(cartAddDto, loginUser.getEmail());
+            String name = cartService.addCart(cartAddDto, loginUser.getEmail());
             return new ResponseEntity<>(name + " 등록완료", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

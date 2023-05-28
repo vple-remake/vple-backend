@@ -47,7 +47,7 @@ public class CartService {
         return new CartDetailDto(cart);
     }
 
-    public String addPlan(CartAddDto cartAddDto, String email) {
+    public String addCart(CartAddDto cartAddDto, String email) {
         try {
             User user = userRepository.findByEmail(email).orElseThrow(
                     () -> new NoSuchElementException("해당 사용자가 존재하지 않습니다."));
