@@ -108,4 +108,16 @@ public class PlanService {
         }
 
     }
+
+    public List<MyPlansDto> findLikedPlans(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new NoSuchElementException("해당 사용자가 존재하지 않습니다.")
+        );
+
+        List<CheckDuplicatedPlanLike> likes = checkDuplicatedPlanLikeRepository.findByUser(user);
+
+        return likes.stream()
+                .map(like -> new MyPlansDto(like.getPlan()))
+                .collect(Collectors.toList());
+    }
 }

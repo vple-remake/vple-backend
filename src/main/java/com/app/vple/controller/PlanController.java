@@ -58,6 +58,17 @@ public class PlanController {
         }
     }
 
+    @GetMapping("/auth/liked/plan")
+    public ResponseEntity<?> likedPlans(HttpServletRequest request) {
+        try {
+            User loginUser = userService.getUser(request);
+            List<MyPlansDto> plans = planService.findLikedPlans(loginUser.getEmail());
+            return new ResponseEntity<>(plans, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/auth/plan")
     public ResponseEntity<?> planAdd(HttpServletRequest request, @Validated @RequestBody PlanCreateDto planCreateDto) {
         try {

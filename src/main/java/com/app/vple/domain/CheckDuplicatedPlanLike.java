@@ -1,5 +1,6 @@
 package com.app.vple.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Getter
 @Table(name = "check_duplicated_plan_likes")
 public class CheckDuplicatedPlanLike {
 
