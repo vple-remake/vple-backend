@@ -70,6 +70,11 @@ public class PlanService {
                 () -> new NoSuchElementException("해당 플랜이 존재하지 않습니다.")
         );
 
+        CheckDuplicatedPlanLike like = checkDuplicatedPlanLikeRepository.findByPlan(plan);
+        if (like != null) {
+            checkDuplicatedPlanLikeRepository.delete(like);
+        }
+
         planRepository.delete(plan);
 
         return plan.getTitle();
