@@ -13,4 +13,6 @@ public interface CheckDuplicatedPlanLikeRepository extends JpaRepository<CheckDu
     Optional<CheckDuplicatedPlanLike> findByUserAndPlan(User user, Plan plan);
 
     List<CheckDuplicatedPlanLike> findByUser(User user);
+
+    CheckDuplicatedPlanLike findByPlan(Plan plan);
 }
