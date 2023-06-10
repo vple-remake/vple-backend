@@ -1,6 +1,7 @@
 package com.app.vple.domain.dto;
 
 import com.app.vple.domain.Plan;
+import com.app.vple.domain.PlanTravel;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -29,6 +30,10 @@ public class PlanListDto {
         this.likeCount = entity.getLikesCount();
         this.startDate = entity.getStartDate();
         this.endDate = entity.getEndDate();
-        this.image = entity.getPlanTravels().get(0).getImage();
+        this.image = entity.getPlanTravels().stream()
+                .filter(planTravel -> planTravel != null && planTravel.getImage() != null)
+                .map(PlanTravel::getImage)
+                .findFirst()
+                .orElse(null);
     }
 }
