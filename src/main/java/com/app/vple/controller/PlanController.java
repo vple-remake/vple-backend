@@ -48,7 +48,7 @@ public class PlanController {
         }
     }
 
-    @GetMapping("/auth/plan/{id}")
+    @GetMapping("/api/plan/{id}")
     public ResponseEntity<?> planDetails(@PathVariable Long id) {
         try {
             PlanDetailDto plan = planService.findPlanDetails(id);
