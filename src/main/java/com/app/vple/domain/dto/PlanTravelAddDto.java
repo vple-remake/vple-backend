@@ -19,7 +19,6 @@ public class PlanTravelAddDto {
 
     private Long planId;
 
-    @NotNull(message = "주소가 필요합니다.")
     private String address;
 
     @NotNull(message = "경도가 필요합니다.")
@@ -41,7 +40,6 @@ public class PlanTravelAddDto {
     public PlanTravel toEntity(Plan plan) {
         return PlanTravel.builder()
                 .name(name)
-                .address(address)
                 .longitude(longitude)
                 .latitude(latitude)
                 .image(image)
