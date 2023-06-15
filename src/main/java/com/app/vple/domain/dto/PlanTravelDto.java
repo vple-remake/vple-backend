@@ -16,7 +16,7 @@ public class PlanTravelDto {
 
     private int day;
 
-    private String startTime;
+    private LocalTime startTime;
 
     private String Image;
 
@@ -24,7 +24,7 @@ public class PlanTravelDto {
         this.id = entity.getId();
         this.name = entity.getName();
         this.day = entity.getDay();
-        this.startTime = entity.getStartTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+        this.startTime = entity.getStartTime();
         this.Image = entity.getImage();
     }
 }
