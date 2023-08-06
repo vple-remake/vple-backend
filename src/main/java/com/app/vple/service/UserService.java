@@ -52,7 +52,7 @@ public class UserService {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("client_id", "9bace5ab316d4073d7412f542dd4f2c8");
-        params.add("redirect_uri", "http://ec2-3-35-56-252.ap-northeast-2.compute.amazonaws.com/user/kakao/callback");
+        params.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
         params.add("code", code);
         params.add("client_secret", "206PsNZkuvbGJURP9ODTiCECD5qCml3s");
 
