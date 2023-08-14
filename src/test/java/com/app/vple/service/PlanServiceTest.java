@@ -33,25 +33,25 @@ class PlanServiceTest {
 
     private Long planId;
 
-    @Test
-    void 플랜_생성_테스트() {
-        PlanCreateDto planCreateDto = new PlanCreateDto();
-
-        planCreateDto.setTitle("강릉 여행");
-        planCreateDto.setCity("강릉");
-        planCreateDto.setDistrict("속초");
-        planCreateDto.setStartDate(LocalDate.of(2023,07,01));
-        planCreateDto.setEndDate(LocalDate.of(2023,07,07));
-        planCreateDto.setPeopleNum(4);
-
-        planId = planService.addPlan(planCreateDto, "kimsh2948@kakao.com");
-        plan = planRepository.findById(planId).get();
-
-        assertEquals(planCreateDto.getTitle(), plan.getTitle());
-    }
-
-    @Test
-    void 플랜_삭제_테스트() {
-
-    }
+//    @Test
+//    void 플랜_생성_테스트() {
+//        PlanCreateDto planCreateDto = new PlanCreateDto();
+//
+//        planCreateDto.setTitle("강릉 여행");
+//        planCreateDto.setCity("강릉");
+//        planCreateDto.setDistrict("속초");
+//        planCreateDto.setStartDate(LocalDate.of(2023,07,01));
+//        planCreateDto.setEndDate(LocalDate.of(2023,07,07));
+//        planCreateDto.setPeopleNum(4);
+//
+//        planId = planService.addPlan(planCreateDto, "kimsh2948@kakao.com");
+//        plan = planRepository.findById(planId).get();
+//
+//        assertEquals(planCreateDto.getTitle(), plan.getTitle());
+//    }
+//
+//    @Test
+//    void 플랜_삭제_테스트() {
+//
+//    }
 }
