@@ -12,6 +12,7 @@ import javax.persistence.*;
 import java.awt.*;
 
 @Entity
+@Table(name = "evaluation")
 @Getter
 @Builder
 @AllArgsConstructor

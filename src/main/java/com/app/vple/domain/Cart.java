@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name="carts")
 @Getter
 @Builder
 @AllArgsConstructor

@@ -28,8 +28,7 @@ dependencies {
 	implementation 'com.auth0:java-jwt:4.0.0'
 	implementation 'mysql:mysql-connector-java'
 
-//	runtimeOnly 'mysql:mysql-connector-java'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	runtimeOnly 'mysql:mysql-connector-java'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

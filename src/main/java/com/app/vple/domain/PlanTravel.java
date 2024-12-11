@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "plan_travel")
 @Getter
 @Builder
 @AllArgsConstructor

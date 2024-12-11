@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Builder
+@Table(name="restaurant_review")
 @AllArgsConstructor
 public class RestaurantReview {
 
