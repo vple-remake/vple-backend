@@ -16,10 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -36,28 +33,47 @@ public class UserService {
     @Autowired
     private final UserRepository userRepository;
 
-    @Value("spring.security.oauth2.client.registration.kakao.client-id")
+    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
     private String clientId;
-
-    @Value("spring.security.oauth2.client.registration.kakao.client-secret")
+    @Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}")
+    private String redirectUri;
+    @Value("${spring.security.oauth2.client.registration.kakao.client-secret}")
     private String clientSecret;
 
+//    @Value("spring.security.oauth2.client.registration.kakao.client-id")
+//    private String clientId;
+//
+//    @Value("spring.security.oauth2.client.registration.kakao.client-secret")
+//    private String clientSecret;
+
     public OauthToken getAccessToken(String code) {
+
+        System.out.println("clientID = " + clientId);
+        System.out.println("redirectUri = " + redirectUri);
+        System.out.println("clientSecret = " + clientSecret);
+
+        System.out.println("code = " + code);
 
         RestTemplate rt = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//        headers.add("Accept", "application/json");
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", "9bace5ab316d4073d7412f542dd4f2c8");
-        params.add("redirect_uri", "http://v-ple.com:3000/user/kakao/callback");
+        params.add("client_id", clientId);
+        params.add("redirect_uri", redirectUri);
         params.add("code", code);
-        params.add("client_secret", "206PsNZkuvbGJURP9ODTiCECD5qCml3s");
+        params.add("client_secret", clientSecret);
+
+        System.out.println("params = " + params);
 
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
                 new HttpEntity<>(params, headers);
+
+        System.out.println("kakaoTokenRequest = " + kakaoTokenRequest);
 
         ResponseEntity<String> accessTokenResponse = rt.exchange(
                 "https://kauth.kakao.com/oauth/token",
@@ -65,12 +81,15 @@ public class UserService {
                 kakaoTokenRequest,
                 String.class
         );
+        System.out.println("accessTokenResponse.getBody() = " + accessTokenResponse.getBody());
 
         ObjectMapper objectMapper = new ObjectMapper();
         OauthToken oauthToken = null;
         try {
             oauthToken = objectMapper.readValue(accessTokenResponse.getBody(), OauthToken.class);
+            System.out.println("발급성공!!   oauthToken = " + oauthToken);
         } catch (JsonProcessingException e) {
+            System.out.println("발급실패");
             e.printStackTrace();
         }
 

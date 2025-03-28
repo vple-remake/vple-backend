@@ -50,7 +50,7 @@ public class User {
     @Column(name = "image_url")
     private String image;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Plan> plans;
 
     public List<String> getRoleList(){

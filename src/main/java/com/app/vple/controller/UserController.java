@@ -33,6 +33,7 @@ public class UserController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtToken);
+        System.out.println("headers = " + headers);
 
         return ResponseEntity.ok().headers(headers).body("success");
     }

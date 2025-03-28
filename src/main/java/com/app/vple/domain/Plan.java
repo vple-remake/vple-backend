@@ -26,7 +26,7 @@ public class Plan {
     @Column(name = "plan_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_code")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
